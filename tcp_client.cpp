@@ -34,9 +34,9 @@ int main() {
 
     std::string input;
     while (true) {
-        std::cout << "> ";
+        std::cout << "Enter a message:\n> ";
         if (!std::getline(std::cin, input)) {
-            std::cout << "\n[!] Ctrl+D detected. Closing connection...\n";
+            std::cout << "\nCtrl+D detected. Closing connection...\n";
             break;
         }
 
@@ -48,12 +48,12 @@ int main() {
         // Receive server response
         ssize_t n = recv(sockfd, buffer, BUFFER_SIZE - 1, 0);
         if (n <= 0) {
-            std::cout << "[!] Server closed connection or error occurred.\n";
+            std::cout << "Server closed connection or error occurred.\n";
             break;
         }
 
         buffer[n] = '\0';
-        std::cout << "[Server] " << buffer << "\n";
+        std::cout << "Server Responded: " << buffer << "\n";
     }
 
     close(sockfd);

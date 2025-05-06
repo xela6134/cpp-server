@@ -37,7 +37,10 @@ int main() {
     std::cout << "------------------------------------------\n";
     while (true) {
         std::cout << "Enter message: ";
-        std::getline(std::cin, message);
+        if (!std::getline(std::cin, message)) {
+            std::cout << "\nCtrl+D detected. Closing connection...\n";
+            break;
+        }
 
         ssize_t sent = sendto(sockfd, message.c_str(), message.size(), 0,
                               (struct sockaddr*)&serverAddr, sizeof(serverAddr));

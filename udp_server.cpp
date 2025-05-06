@@ -21,15 +21,15 @@ int main() {
     struct sockaddr_in serverAddr, clientAddr;
     char buffer[BUFFER_SIZE];
 
-    sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+    sockfd = socket(AF_INET, SOCK_DGRAM, 0);    // SOCK_DGRAM is UDP
     if (sockfd < 0) {
         perror("Socket creation failed");
         return 1;
     }
 
     memset(&serverAddr, 0, sizeof(serverAddr));
-    serverAddr.sin_family = AF_INET;
-    serverAddr.sin_port = htons(SERVER_PORT);
+    serverAddr.sin_family = AF_INET;            // IPv4
+    serverAddr.sin_port = htons(SERVER_PORT);   // Machine rea
 
     if (bind(sockfd, (const struct sockaddr*)&serverAddr, sizeof(serverAddr)) < 0) {
         perror("Bind failed");
